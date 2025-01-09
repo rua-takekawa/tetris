@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>ページタイトル</title>
+	<style>
+		/* CSSを書くところ */
+		h1 {
+			color: rgb(164, 164, 255);
+		}
+	</style>
+</head>
+
+<body>
+	<!-- 実際に表示される領域 -->
+	<h1>Hello</h1>
+	<script>
+		// JavaScriptを書くところ
+		console.log("Hello JavaScript");
+	</script>
+
+</html>
+<input id="input">
+<button onclick="clicked();">ボタン</button>
+<div id="output"></div>
+
+<script>
+	function clicked() {
+		const input = document.getElementById("input");
+		const output = document.getElementById("output");
+		output.innerHTML = `<b>${input.value}</b>`;
+	}
+</script>
+<input id="input">
+<div id="output"></div>
+
+<script>
+	const input = document.getElementById("input");
+	input.addEventListener("keydown", (event) => {
+		console.log(event);
+		if (event.code === "Enter") {
+			const output = document.getElementById("output");
+			output.innerHTML += `<b>${input.value}</b><br>`;
+			input.value = "";
+		}
+	})
+</script>
+<button onclick="clicked(this);">ボタン</button>
+<span id="output"></span>
+<script>
+	function sleep(ms) {
+		return new Promise(resolve => setTimeout(resolve, ms));
+	}
+	async function clicked(button) {
+		button.disabled = true; // 処理中はボタンを無効化
+		const output = document.getElementById("output");
+		for (let i = 0; i < 10; ++i) {
+			output.innerHTML = i;
+			await sleep(1000); // 1秒待機
+		}
+		button.disabled = false;
+	}
+</script>
+<button onclick="clicked(this);">ボタン</button>
+<span id="output"></span>
+<script>
+	function clicked(button) {
+		button.disabled = true;
+		const output = document.getElementById("output");
+		let i = 0;
+		output.innerHTML = i;
+		const timerId = setInterval(() => {
+			if (++i < 10) {
+				output.innerHTML = i;
+			} else {
+				clearInterval(timerId); // 定期実行の終了
+				button.disabled = false;
+			}
+		}, 1000); // 1秒おきに実行
+	}
+</script>
+<button onclick="startJob(this);">start</button>
+<button onclick="endJob();">end</button>
+<span id="output"></span>
+<script>
+	function sleep(ms) {
+		return new Promise(resolve => setTimeout(resolve, ms));
+	}
+	const output = document.getElementById("output");
+	let canceled = false; // キャンセルフラグ
+	async function heavyFunction() {// 非常に重い処理
+		let sum = 0;
+		for (let i = 0; i < 1e10; ++i) {
+			sum += i;
+			if (i % 1e6 === 0) {
+				output.innerHTML = i; // 進捗状況の更新
+				await sleep(0); // 重い処理内で定期的に他のジョブへ譲る
+				if (canceled)
+					return -1;
+			}
+		}
+		return sum;
+	}
+	async function startJob(button) {
+		button.disabled = true;
+		canceled = false;
+		const ans = await heavyFunction(); // 重い処理が終わるまで待つ
+		console.log(ans); // 計算結果取得
+		canceled = false;
+		button.disabled = false;
+	}
+	function endJob() {
+		canceled = true;
+	}
+</script>
+<button id="start" onclick="startJob();">start</button>
+<button onclick="endJob();">end</button>
+<span id="output"></span>
+<script>
+const output = document.getElementById("output");
+const start = document.getElementById("start");
+const code = `
+	console.log("worker started");
+	function heavyFunction(end) {
+		let sum = 0;
+		for (let i = 0; i < end; ++i) {
+			sum += i;
+			if (i % 1e6 === 0)
+				postMessage({status: "doing", value: i});
+		}
+		return sum;
+	}
+	onmessage = (e) => {
+		console.log("worker received message", e.data);
+		const ans = heavyFunction(e.data);
+		postMessage({status: "done", value: ans});
+	};
+`;
+let worker;
+async function startJob() {
+	start.disabled = true;
+	worker = new Worker("data:text/javascript;base64," + btoa(code))
+	worker.onmessage = (e) => {
+		console.log("parent received message:", e.data);
+		output.innerHTML = e.data.value;
+		if (e.data.status === "done") {
+			worker.terminate();
+			start.disabled = false;
+		}
+	};
+	worker.postMessage(1e10);
+}
+function endJob() {
+	worker?.terminate();
+	start.disabled = false;
+}
+</script>
+
+<button onclick="play();">play</button>
+<script>
+	function play() {
+		const ctx = new AudioContext();
+		const oscillator = ctx.createOscillator();
+		let current_time = ctx.currentTime;
+
+		const freqAndTime = [[400, 1], [300, 2]];
+		for (const [freq, time] of freqAndTime) {
+			oscillator.frequency.setValueAtTime(freq, current_time);
+			current_time += time;
+		}
+
+		oscillator.connect(ctx.destination);
+		oscillator.start(ctx.currentTime);
+		oscillator.stop(current_time);
+	}
+	window.AudioContext = window.AudioContext || window.webkitAudioContext;
+</script>
+<input type="file" onChange="readFile(this.files);">
+<div id="output"></div>
+<script>
+	const output = document.getElementById("output");
+	function readFile(files) {
+		if (files.length === 0) return;
+		const file = files[0];
+		console.log(file.type)
+		const reader = new FileReader();
+		if (file.type.match("text.*")) {
+			reader.onload = (event) => { output.innerHTML = `<xmp>${event.target.result}</xmp>`; }
+			reader.readAsText(file, "utf-8");
+		} else if (file.type.match("image.*")) {
+			reader.onload = (event) => { output.innerHTML = `<img src="${event.target.result}" width="500">`; }
+			reader.readAsDataURL(file);
+		} else if (file.type.match("audio.*")) {
+			reader.onload = (event) => { output.innerHTML = `<audio controls src="${event.target.result}"></audio>`; }
+			reader.readAsDataURL(file);
+		} else if (file.type.match("video.*")) {
+			reader.onload = (event) => { output.innerHTML = `<video controls src="${event.target.result}" width="500"></video>`; }
+			reader.readAsDataURL(file);
+		}
+	}
+</script>
+<textarea id="input" cols="40" rows="20"></textarea>
+<button onclick="clicked();">ダウンロード</button>
+<script>
+	function download(text, filename) {
+		const blob = new Blob([text], { type: "text/plain" });
+		const link = document.createElement("a");
+		link.href = URL.createObjectURL(blob);
+		link.download = filename;
+		link.click();
+	}
+	function clicked() {
+		const input = document.getElementById("input");
+		download(input.value, "sample.txt");
+	}
+</script>
+</body>

@@ -1,0 +1,24 @@
+element.style {
+}
+html[Attributes Style] {
+    -webkit-locale: "ja";
+}
+user agent stylesheet
+:root {
+    view-transition-name: root;
+}
+user agent stylesheet
+html {
+    display: block;
+}
+.container{
+    display: flex;
+    justify-content: center;
+}
+
+.container.box{
+    background-color: azure;
+    width: 200px;
+    text-align: center;
+    margin: 5%;
+}

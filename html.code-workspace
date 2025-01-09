@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../../名称未設定フォルダ/html"
+		},
+		{
+			"path": "../../名称未設定フォルダ/css"
+		},
+		{
+			"path": "../../名称未設定フォルダ/img"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "html"
+	}
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="tetris2.css">
+    <title>Tetris_app</title>
+  </head>
+  <body>
+  <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service_worker.js').then(function(registration) {
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }).catch(function(err) {
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      }
+     </script>
+   </body>
+</html>
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <title>PWA Sample</title>
+  </head>
+  <body>
+    <div class="title-wrap">
+      <h1>tetris</h1>
+    </div>
+    <div class="wrapper-container">
+      <div class="tetris-container">
+        <div class="tetris-main">
+          <canvas id="stage" width="250px" height="500px" style="background-color:rgb(202, 236, 255);">
+          </canvas>
+        </div>
+        <div class="tetris-option">
+          <span class="tetris-panel-container">
+            <p>Next</p>
+              <canvas id="next" width="150px" height="150px" style="background-color:rgb(148, 171, 216);">
+              </canvas>
+            <p>LINES:<span id="lines">0</span></p>
+            <p><span id="message"></span></p>
+            <div class="tetris-panel-container-padding">
+            <table class="tetris-button-panel">
+              <tr>
+                <td></td>
+                <td id="tetris-rotate-button" class="tetris-button">↻</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td id="tetris-move-left-button"class="tetris-button">←</td>
+                <td id="tetris-fall-button"class="tetris-button">↓</td>
+                <td id="tetris-move-right-button"class="tetris-button">→</td>
+              </tr>
+            </table>
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+    <script>
+      var tetris = new Tetris();
+      tetris.startGame();
+    </script>
+  </body>
+</html>

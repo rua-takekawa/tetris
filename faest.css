@@ -1,0 +1,271 @@
+
+body {
+   margin: 0;
+   padding: 0;
+   font-family: "Hiragino Kaku Gothic Pro", "", "Helvetica Neue", Helvetica, Arial, sans-serif;
+   background-color: #eafff9;
+   letter-spacing : 0.2em;
+}
+header {
+   padding: 25px 0% 10px;
+   position: fixed;
+   top: 2;
+   width: 100%;
+   background-color: transparent;
+   display: flex;
+   align-items: center;
+}
+h1 {
+   margin: 3px; padding: 2px;
+   font-size: 20px;
+}
+a {	
+   text-decoration: none;
+   color: #fff;
+}
+nav {
+   margin: 0 0 0 auto;
+}
+ul {
+   list-style: none;
+   margin: 0;
+   display: flex;
+}
+li {
+   margin: 0 0 0 15px;
+   font-size: 14px;
+}
+.main-visual {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   background: url('main_visual.jpg') top center / cover no-repeat;
+}
+h2 {
+   margin: 0;
+   font-size: 30px;
+   font-weight: normal;
+   color: #000000;
+}
+a {	
+    text-decoration: none;
+    color: #4b4b4b;
+ }
+ ul {
+    list-style: none;
+    margin: 0;
+ }
+ ul {
+    list-style: none;
+    margin: 0;
+    display: flex;
+ }
+ li {
+    margin: 0 0 0 15px;
+    font-size: 14px;
+ }
+ nav {
+    margin: 0 0 0 auto;
+ }
+ .about{
+   display: flex;
+   flex-direction: row-reverse;
+   width: 100%;
+   max-width: 1200px;
+   margin: 120px auto 0;
+}
+.about img{
+   width: 20%;
+   max-width: 400px;
+   height: 300px;
+   border-radius: 24px;
+   object-fit: cover;
+}
+main{
+   width: 86%;
+   margin: auto;
+}
+.about img{
+   width: 40%;
+   max-width: 400px;
+   height: 400px;
+   border-radius: 20px;
+   object-fit: cover;
+}
+.about h2{
+   margin-top: -4px;
+   font-size: 34px;
+   }
+.about div{
+   width: 100%;
+   text-align: left;
+   color: black;
+   font-size: 22px;
+}
+.about h3{
+   margin-top: 2px;
+   font-size: 25px;
+   color: #000000;
+   }
+.about h4{
+   margin-top: -10px;
+    font-size: 20px;
+}
+.about p{
+   margin-top: -2px;
+    font-size: 20px;
+}
+.text{
+   display: flex;
+   flex-direction: row-reverse;
+   width: 100%;
+   max-width: 1200px;
+   margin: 120px auto 0;
+}
+.about{
+ display: flex;
+ flex-direction: row-reverse;
+ justify-content: space-between;
+ width: 100%;
+ max-width: 1200px;
+ margin-inline: auto;
+ padding-top: 120px;
+}
+
+.about-img{
+ width: 48%;
+ aspect-ratio: 13/10;
+ object-fit: cover;
+ border-radius: 16px;
+}
+
+.about-content{
+ width: 48%;
+ padding-top: 40px;
+ color: #2b2b2b;
+}
+
+.about-name{
+ font-size: 40px;
+}
+
+.about-subtitle{
+ color: #30A9C6;
+ font-size: 24px;
+ margin-top: 24px;
+}
+
+.works-title{
+ position: relative;
+ width: 12px;
+ &::before{
+   position: relative;
+   width: 12px;
+ }
+}
+.skill{
+ width: 100%;
+ max-width: 1200px;
+ margin-inline: auto;
+ padding-top: 120px;
+}
+
+.skill-title{
+ text-align: center;
+}
+
+.skill-title h2{
+ font-size: 32px;
+ color: #30A9C6;
+ line-height: -19px;
+}
+
+.skill-title span {
+ font-size: 16px;
+ color: #2b2b2b;
+ font-weight: 700;
+}
+
+.skill-list{
+ display: grid;
+ grid-template-columns: repeat(4, 1fr);
+ gap: 3%;
+}
+
+.skill-item{
+ width: 100%;
+ list-style: none;
+ text-align: center;
+}
+
+.skill-item img {
+ width: 100%;
+ aspect-ratio: 16/9;
+ object-fit: cover;
+ margin-bottom: 8px;
+ border-radius: 8px;
+}
+
+.skill-item span{
+ font-size: 16px;
+ font-weight: 700;
+}
+.text{
+   width: 100%;
+}
+body{
+ background: #eaffff;
+}
+.about{
+ display: flex;
+ flex-direction: row-reverse;
+ justify-content: space-between;
+ width: 100%;
+ max-width: 1200px;
+ margin-inline: auto;
+ padding-top: 120px;
+}
+
+.about-img{
+ width: 48%;
+ aspect-ratio: 13/10;
+ object-fit: cover;
+ border-radius: 16px;
+}
+
+.about-content{
+ width: 48%;
+ padding-top: 40px;
+ color: #2b2b2b;
+}
+
+.about-name{
+ font-size: 40px;
+}
+
+.about-subtitle{
+ color: #30A9C6;
+ font-size: 24px;
+ margin-top: 24px;
+}
+
+.works-list{
+ display: grid;
+ 
+ margin: px;
+}
+
+div.text{
+   list-style: none;
+   margin: 230px;
+   display: flex;
+}
+
+.skil{
+   width: 100%;
+   max-width: 1200px;
+   margin-inline: auto;
+   padding-top: 120px;
+  }
+
